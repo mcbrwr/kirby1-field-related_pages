@@ -1,2 +1,26 @@
-kirby-field-relatedpages
-========================
+kirby1 related pages field
+==========================
+
+Rudimentary related pages field for Kirby 1.
+
+
+##Usage in blueprint:
+
+    your-fieldname:
+      label: your field label 
+      type:  related_pages
+      empty: true
+      templates: article, blog, news
+
+##Usage in template:
+Can probably be done easier, but I was in a rush and this worked:
+
+    $articles = array();
+    if ( $page->highlights() != "" ){
+      foreach ( explode(',',$page->highlights()) as $uri ) {
+        $lookup = $pages->findByHash( base_convert(sprintf('%u', crc32($uri)), 10, 36) );
+        if ( $lookup ) {
+          $articles[] = $lookup->first();
+        }
+      }
+    }
