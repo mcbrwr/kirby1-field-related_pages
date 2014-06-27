@@ -6,7 +6,7 @@ It is a modification of the tags field.
 
 ##Usage in blueprint:
 
-    your-fieldname:
+    your-fieldname-here:
       label: your field label 
       type:  related_pages
       empty: true
@@ -16,11 +16,12 @@ It is a modification of the tags field.
 Can probably be done easier, but I was in a rush and this worked:
 
     $articles = array();
-    if ( $page->highlights() != "" ){
-      foreach ( explode(',',$page->highlights()) as $uri ) {
+    if ( isset($page->your-fieldname-here()) && !empty($page->your-fieldname-here()) ){
+      foreach ( explode(',',$page->your-fieldname-here()) as $uri ) {
         $lookup = $pages->findByHash( base_convert(sprintf('%u', crc32($uri)), 10, 36) );
         if ( $lookup ) {
           $articles[] = $lookup->first();
         }
       }
     }
+
