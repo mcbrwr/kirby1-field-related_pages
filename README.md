@@ -2,7 +2,7 @@ kirby1 related pages field
 ==========================
 
 Rudimentary related pages field for Kirby 1.
-
+It is a modification of the tags field.
 
 ##Usage in blueprint:
 
